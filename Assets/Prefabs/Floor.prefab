@@ -55,5 +55,45 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: da0db8373d52d914aa4a70c308881ba7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3470866987673728717}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: da0db8373d52d914aa4a70c308881ba7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1659809090859543415}
   m_SourcePrefab: {fileID: 100100000, guid: da0db8373d52d914aa4a70c308881ba7, type: 3}
+--- !u!1 &206675741762682755 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: da0db8373d52d914aa4a70c308881ba7, type: 3}
+  m_PrefabInstance: {fileID: 1017580059071431378}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3470866987673728717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206675741762682755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc74073ba4d40b6419d6e521a9c436a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Evengy.GridBasedMovementController.Navigation.TileController
+  forwardTrigger: {fileID: 0}
+  backTrigger: {fileID: 0}
+  leftTrigger: {fileID: 0}
+  rightTrigger: {fileID: 0}
+--- !u!114 &1659809090859543415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206675741762682755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeb64e24f50286d4f902c0c3f94f16a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Evengy.GridBasedMovementController.Navigation.TileCore
+  obstacleTrigger: {fileID: 0}
