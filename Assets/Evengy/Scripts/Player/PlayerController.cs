@@ -51,7 +51,11 @@ namespace Evengy.GridBasedMovementController.Player
 
         public void MoveTowards(Direction direction)
         {
-            targetTile = IsBusy ? targetTile : targetTile.GetTile(localDirection(direction));
+            //targetTile = IsBusy ? targetTile : targetTile.GetTile(localDirection(direction));
+            if (!IsBusy)
+            {
+                targetTile = targetTile.GetTile(localDirection(direction));
+            }
             transform.parent = targetTile.transform;
         }
         public void RotateTowards(Direction direction)
