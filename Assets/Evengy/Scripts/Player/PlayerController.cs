@@ -64,6 +64,7 @@ namespace Evengy.GridBasedMovementController.Player
             if (nextTile == targetTile) // Check if  are stuck (Next tile is the same as Current tile)
             {
                 ShakeCamera();
+                AudioManager.instance.Play("wallslam");
                 return; 
             }
             // Move is valid
@@ -83,7 +84,7 @@ namespace Evengy.GridBasedMovementController.Player
             Tween.StopAll(cameraTransform);
             Tween.ShakeLocalPosition(
                 target: cameraTransform,
-                strength: new Vector3(shakeStrength, shakeStrength, 0),
+                strength: new Vector3(shakeStrength, 0, shakeStrength*2),
                 duration: shakeDuration,
                 frequency: shakeFrequency
             );
