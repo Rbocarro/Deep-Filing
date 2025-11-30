@@ -1,11 +1,17 @@
 using Evengy.GridBasedMovementController.Navigation;
-using UnityEngine;
 using PrimeTween;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Evengy.GridBasedMovementController.Player
 {
     public partial class PlayerController : MonoBehaviour
     {
+        public static Vector3 PlayerWorldPosition { get; private set; }
+        public bool CanPlayerMove { get; private set; }
+
+        [SerializeField] private PlayerInteraction interactionBox;
+
         [Header("Movement Settings")]
         [SerializeField] bool smoothTransition = false;
         [SerializeField] float movementSpeed;
@@ -40,13 +46,24 @@ namespace Evengy.GridBasedMovementController.Player
             currentDirection = Direction.Forward;
             targetTile = grid;
             targetRotation = Vector3.up * (int)currentDirection;
+            CanPlayerMove=true;
         }
 
         private void Update()
         {
+            PlayerWorldPosition = transform.position;
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                Debug.Log("Interact");
+                if (interactionBox.CurrentEntity != null)
+                    interactionBox.CurrentEntity.InteractWith();
+            }
             if (!IsBusy) return;
-            Move();
-            Rotate();
+            if (CanPlayerMove)
+            {
+                Move();
+                Rotate();
+            }
         }
 
         private void Move() => transform.position = smoothTransition ?

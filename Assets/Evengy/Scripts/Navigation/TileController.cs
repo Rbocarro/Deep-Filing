@@ -26,5 +26,28 @@ namespace Evengy.GridBasedMovementController.Navigation
         TileController BackTile => backTrigger.IsTriggered ? backTrigger.TriggerObject.GetComponent<TileController>() : this;
         TileController LeftTile => leftTrigger.IsTriggered ? leftTrigger.TriggerObject.GetComponent<TileController>() : this;
         TileController RightTile => rightTrigger.IsTriggered ? rightTrigger.TriggerObject.GetComponent<TileController>() : this;
+
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            float sphereRadius = .1f;
+            if (forwardTrigger.GetComponent<TriggerOnTag>().GetTriggerTag() == Tag.Obstacle)
+            {
+                Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - .5f, transform.position.z + (.5f- sphereRadius)), sphereRadius);
+            }
+            if (leftTrigger.GetComponent<TriggerOnTag>().GetTriggerTag() == Tag.Obstacle)
+            {
+                Gizmos.DrawSphere(new Vector3(transform.position.x- (.5f -  sphereRadius), transform.position.y-.5f, transform.position.z), sphereRadius);
+            }
+            if (rightTrigger.GetComponent<TriggerOnTag>().GetTriggerTag() == Tag.Obstacle)
+            {
+                Gizmos.DrawSphere(new Vector3(transform.position.x + (.5f -  sphereRadius), transform.position.y - .5f, transform.position.z), sphereRadius);
+            }
+            if (backTrigger.GetComponent<TriggerOnTag>().GetTriggerTag() == Tag.Obstacle)
+            {
+                Gizmos.DrawSphere(new Vector3(transform.position.x , transform.position.y - .5f, transform.position.z - (.5f - sphereRadius)), sphereRadius);
+            }
+        }
     }
 }

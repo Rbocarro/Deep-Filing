@@ -4,7 +4,7 @@ namespace Evengy.GridBasedMovementController.Helpers
 {
     public class TriggerOnTag : MonoBehaviour
     {
-        [SerializeField] private Tag triggerTag;
+        [SerializeField] Tag triggerTag;
         public bool IsTriggered => isTriggered;
         public GameObject TriggerObject { get; private set; }
 
@@ -22,6 +22,10 @@ namespace Evengy.GridBasedMovementController.Helpers
         private void Awake()
         {
             SetGizmoColorFromTag();
+        }
+        public Tag GetTriggerTag() { 
+            
+            return triggerTag;
         }
 
         private void OnTriggerEnter(Collider other)
