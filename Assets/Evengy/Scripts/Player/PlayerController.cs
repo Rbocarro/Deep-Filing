@@ -8,7 +8,7 @@ namespace Evengy.GridBasedMovementController.Player
     public partial class PlayerController : MonoBehaviour
     {
         public static Vector3 PlayerWorldPosition { get; private set; }
-        public bool CanPlayerMove { get; private set; }
+        public static bool CanPlayerMove { get;  set; }
 
         [SerializeField] private PlayerInteraction interactionBox;
 
@@ -27,10 +27,14 @@ namespace Evengy.GridBasedMovementController.Player
         Vector3 targetRotation;
 
         [Header("Camera Settings")]
-        [SerializeField] Transform cameraTransform; // Drag Main Camera here
+        public  Transform cameraTransform; // Drag Main Camera here
+        public static Transform PlayerCameraTransform { get; private set; }// provide access to other gameobjects
+        [SerializeField] private Vector3 defaultCameraLocalPos;
         [SerializeField] float shakeStrength = 0.15f;
         [SerializeField] float shakeDuration = 0.2f;
         [SerializeField] int shakeFrequency = 10;
+
+        public static PlayerController PlayerInstance { get; private set; }
 
         public bool IsBusy => Vector3.Distance(transform.position, targetTile.transform.position) > precision
             || Vector3.Distance(transform.rotation.eulerAngles, targetRotation) > precision;
@@ -38,10 +42,17 @@ namespace Evengy.GridBasedMovementController.Player
         private Direction localDirection(Direction direction)
             => (Direction)(((int)currentDirection + (int)direction) % (int)Direction.Round);
 
+        private void Awake()
+        {
+            PlayerInstance = this;
+        }
+
         private void Start()
         {
             defaultTransition = smoothTransition;
             defaultMovementSpeed = movementSpeed;
+            defaultCameraLocalPos= cameraTransform.localPosition;
+            PlayerCameraTransform = cameraTransform;
 
             currentDirection = Direction.Forward;
             targetTile = grid;
@@ -101,10 +112,18 @@ namespace Evengy.GridBasedMovementController.Player
             Tween.StopAll(cameraTransform);
             Tween.ShakeLocalPosition(
                 target: cameraTransform,
-                strength: new Vector3(shakeStrength, 0, shakeStrength*2),
+                strength: new Vector3(0f, 0f, shakeStrength*2),
                 duration: shakeDuration,
                 frequency: shakeFrequency
             );
+        }
+
+        public static void ResetPlayerCamTransformToDefault()
+        {
+            if (PlayerCameraTransform == null) return;
+            Debug.Log("Resetting Cam to default pos");
+
+            PlayerCameraTransform.localPosition = PlayerInstance.defaultCameraLocalPos;
         }
     }
 }

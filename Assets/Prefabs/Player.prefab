@@ -53,8 +53,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 1}
+  m_Size: {x: 1, y: 1, z: 1.5}
+  m_Center: {x: 0, y: 0, z: 0.75}
 --- !u!114 &9117509996027145538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,7 +308,7 @@ MonoBehaviour:
   rotationSpeed: 500
   precision: 0.1
   grid: {fileID: 0}
-  cameraTransform: {fileID: 0}
+  cameraTransform: {fileID: 9176206249602642799}
   shakeStrength: 0.15
   shakeDuration: 0.2
   shakeFrequency: 10

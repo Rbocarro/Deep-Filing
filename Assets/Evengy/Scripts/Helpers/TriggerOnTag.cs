@@ -18,7 +18,6 @@ namespace Evengy.GridBasedMovementController.Helpers
             triggerCollider = GetComponent<SphereCollider>();
             SetGizmoColorFromTag();
         }
-
         private void Awake()
         {
             SetGizmoColorFromTag();

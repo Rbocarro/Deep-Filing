@@ -6,6 +6,7 @@ public class VentObstacleController : MonoBehaviour, IEntity
 
 
     Vector3 playerPos;
+    bool hasMoved=false;
     [SerializeField] private BoxCollider ventCollider;
     [SerializeField] private float frontCenterZ = 0.5f;
     [SerializeField] private float backCenterZ = -0.5f;
@@ -25,7 +26,9 @@ public class VentObstacleController : MonoBehaviour, IEntity
     }
 
     public void InteractWith()
-    {
-        this.gameObject.SetActive(false);
+    {   if (hasMoved) return;
+        this.transform.position = new Vector3(0f, 1000f, 1f);
+        //this.gameObject.SetActive(false);
+        hasMoved = true;
     }
 }
